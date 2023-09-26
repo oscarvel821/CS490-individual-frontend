@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {AiOutlineSearch} from "react-icons/ai"
 import MovieList from "./MovieList";
+import Popup from "./Popup";
+import FilmDetails from "./FilmDetails";
 import FilmService from "../services/film.service";
 
 const initialValues = {
@@ -14,6 +16,32 @@ const Movies = () => {
     const [values, setValues] = useState(initialValues);
     const [searchBy, setSearchBy] = useState(null);
     const [data, setData] = useState([]);
+    const [id, setId] = useState(null);
+    const [popupButton, setPopupButton] = useState(false);
+    const [filmDetails, setFilmDetails] = useState([]);
+
+    useEffect(() => {
+        const fetchFilmDetails = async () => {
+        try{
+            const res = await FilmService.get(id);
+            setFilmDetails(res.data);
+        }
+        catch(err){
+            console.log(err);
+        }
+        }
+
+        fetchFilmDetails();
+    }, [id])
+
+    const handlePopup = (id) => {
+        setPopupButton(true);
+        setId(id);
+    }
+
+    const closePopup = () => {
+        setPopupButton(false);
+    }
 
     const handleInputChange = (e) =>{
         const {name, value} = e.target;
@@ -110,8 +138,9 @@ const Movies = () => {
                 </div>
             </div>
             <div className="flex flex-row max-w-[1240px] mx-auto px-2 text-black">
-                <MovieList data={data}/>
+                <MovieList data={data} handlePopup={handlePopup}/>
             </div>
+            <Popup trigger={popupButton} closePopup={closePopup} content={<FilmDetails data={filmDetails}/>}/>
         </div>
     )
 }

@@ -26,7 +26,6 @@ const Ranking = ({cards, icon, descript, category}) => {
     useEffect(() => {
         const fetchFilmDetails = async () => {
         try{
-            // const res = await axios.get(`/api/film/${id}`);
             const res = await FilmService.get(id);
             setFilmDetails(res.data);
         }
@@ -69,7 +68,7 @@ const Ranking = ({cards, icon, descript, category}) => {
                 <div className='relative m-4'>
                     {details ? (
                         <>
-                            <div onClick={closeDetails} className='absolute top-0 right-0'>
+                            <div onClick={closeDetails} className='absolute top-0 right-0 hover:cursor-pointer'>
                                 <AiOutlineClose/>
                             </div>
 
