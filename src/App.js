@@ -1,27 +1,20 @@
-import React, {useEffect, useState} from 'react'
-import './App.css';
+import React from 'react';
+import NavBar from './components/Navbar';
+import Landing from './components/Landing';
+import Movies from './components/Movies';
+import Customers from './components/Customers';
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
-  
-  const [backendData, setBackendData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, []);
 
   return(
     <div>
-      {(typeof backendData.title === 'undefined') ? (
-        <h1>Loading...</h1>
-      ) : (
-        <h1>{backendData.title}</h1>
-      )}
+      <NavBar/>
+      <Routes>
+        <Route path="/" element={<Landing/>}/>
+        <Route path="/movies" element={<Movies/>}/>
+        <Route path="/customers" element={<Customers/>}/>
+      </Routes>
     </div>
   )
 }
