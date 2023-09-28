@@ -1,9 +1,5 @@
 import React from "react";
 
-// const truncateString = (str, endpoint) => {
-//     return (str.length > endpoint) ? 
-//     str.slice(0,endpoint - 1) + "..." : str;
-// }
 
 const MovieList = ({data, handlePopup}) => {
     return(

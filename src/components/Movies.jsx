@@ -71,7 +71,7 @@ const Movies = () => {
             setValues(initialValues);
             setData(res.data);
         } catch (err) {
-            console.log(data);
+            console.log(err);
         }
     }
 
@@ -83,7 +83,7 @@ const Movies = () => {
             setValues(initialValues);
             setData(res.data);
         } catch (err) {
-            console.log(data);
+            console.log(err);
         }
     }
 
