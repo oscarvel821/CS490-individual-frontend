@@ -102,6 +102,7 @@ const Movies = () => {
                             name="film_name"
                             label="Film Name"
                             placeholder="Film Name"
+                            autoComplete="off"
                         />
                         <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 rounded-full bg-gray-300" onClick={handleFilmSearch}>
                             <AiOutlineSearch/>
@@ -116,6 +117,7 @@ const Movies = () => {
                             name="actor_name"
                             label="Actor Name"
                             placeholder="Actor Name"
+                            autoComplete="off"
                         />
                         <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 rounded-full bg-gray-300" onClick={handleActorSearch}>
                             <AiOutlineSearch/>
@@ -130,6 +132,7 @@ const Movies = () => {
                             name="genre"
                             label="Genre"
                             placeholder="Genre"
+                            autoComplete="off"
                         />
                         <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 rounded-full bg-gray-300" onClick={handleGenreSearch}>
                             <AiOutlineSearch/>

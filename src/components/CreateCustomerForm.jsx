@@ -68,6 +68,7 @@ const CreateCustomerForm = () => {
                 name="first_name"
                 value={formData.first_name}
                 onChange={handleInputChange}
+                autoComplete="off"
                 required
               />
             </div>
@@ -80,6 +81,7 @@ const CreateCustomerForm = () => {
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleInputChange}
+                autoComplete="off"
                 required
               />
             </div>
@@ -92,6 +94,7 @@ const CreateCustomerForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                autoComplete="off"
                 required
               />
             </div>
