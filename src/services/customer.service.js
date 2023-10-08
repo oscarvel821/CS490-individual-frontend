@@ -9,14 +9,27 @@ const get = (id) => {
 };
 
 const create = (data) => {
-    console.log("here")
     return http.post("/customer", data);
 };
 
+const update = (id, data) => {
+    return http.put(`/customer/${id}`, data);
+}
+
+const remove = (id) => {
+    return http.delete(`/customer/${id}`);
+}
+
+const getAllRentals = (id) => {
+    return http.get(`/customer/${id}/rentals`);
+}
 const CustomerService = {
+    getAllRentals,
     getAll,
     get,
     create,
+    update,
+    remove
 }
 
 export default CustomerService;

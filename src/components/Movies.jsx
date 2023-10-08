@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {AiOutlineSearch} from "react-icons/ai"
 import MovieList from "./MovieList";
 import Popup from "./Popup";
-import FilmDetails from "./FilmDetails";
+import RentFilmForm from "./RentFilmForm";
 import FilmService from "../services/film.service";
 
 const initialValues = {
@@ -143,7 +143,7 @@ const Movies = () => {
             <div className="flex flex-row max-w-[1240px] mx-auto px-2 text-black">
                 <MovieList data={data} handlePopup={handlePopup}/>
             </div>
-            <Popup trigger={popupButton} closePopup={closePopup} content={<FilmDetails data={filmDetails}/>}/>
+            <Popup trigger={popupButton} closePopup={closePopup} content={<RentFilmForm filmDetails={filmDetails}/>}/>
         </div>
     )
 }

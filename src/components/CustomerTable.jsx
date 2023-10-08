@@ -4,13 +4,20 @@ import { useState, useEffect } from "react";
 import CustomerService from "../services/customer.service.js";
 import Popup from "./Popup.jsx";
 import CreateCustomerForm from "./CreateCustomerForm.jsx";
+import EditCustomerForm from "./EditCustomerForm.jsx";
+import DeleteCustomerForm from "./DeleteCustomerForm.jsx";
+import CustomerRentals from "./CustomerRentals.jsx";
 
 
 const CustomerTable = () => {
 
     const [data, setData] = useState([])
+    const [id, setId] = useState("");
     const [filtering, setFiltering] = useState('');
-    const [popupButton, setPopupButton] = useState(false);
+    const [createPopupButton, setCreatePopupButton] = useState(false);
+    const [editPopupButton, setEditPopupButton] = useState(false);
+    const [deletePopupButton, setDeletePopupButton] = useState(false);
+    const [moreInfoPopupButton, setMoreInfoPopupButton] = useState(false);
 
     useEffect(() =>{
         const fetchCustomers = async () => {
@@ -26,8 +33,35 @@ const CustomerTable = () => {
         fetchCustomers();
     }, [])
 
-    const handlePopup = () => {
-        setPopupButton(!popupButton);
+    const handleCreatePopup = () => {
+        setCreatePopupButton(!createPopupButton)
+    }
+    
+    const closedMoreInfoPopup = () => {
+        setMoreInfoPopupButton(false);
+    }
+
+    const closeEditPopup = () => {
+        setEditPopupButton(false);
+    }
+
+    const closeDeletePopup = () => {
+        setDeletePopupButton(false);
+    }
+
+    const handleMoreInfoClick = (id) => {
+        setMoreInfoPopupButton(true);
+        setId(id);
+    }
+
+    const handleEditClick = (id) => {
+        setEditPopupButton(true);
+        setId(id);
+    }
+
+    const handleDeleteClick = (id) => {
+        setDeletePopupButton(true);
+        setId(id);
     }
 
     const columns = [
@@ -42,7 +76,43 @@ const CustomerTable = () => {
         {
             header: 'Last Name',
             accessorKey : 'last_name'
-        }
+        },
+        {
+            header : "", 
+            accessorKey : 'customer_id',
+            cell : ({cell}) => (
+                <button
+                onClick={() => handleMoreInfoClick(cell.getValue())}
+                className="transparent hover:bg-gray-100 border border-gray-300 p-2 font-bold rounded shadow-lg"
+              >
+                More Info
+              </button>
+            )
+        },
+        {
+            header: "",
+            accessorKey: 'customer_id',
+            cell: ({cell}) => (
+                <button
+                onClick={() => handleEditClick(cell.getValue())}
+                className="transparent hover:bg-blue-100 border border-blue-300 p-2 font-bold rounded shadow-lg"
+              >
+                Edit
+              </button>
+            ),
+        },
+        {
+            header: '', 
+            accessorKey: 'customer_id',
+            cell: ({cell}) => (
+              <button
+                onClick={() => handleDeleteClick(cell.getValue())}
+                className="transparent hover:bg-red-100 border border-red-300 p-2 font-bold rounded shadow-lg"
+              >
+                Delete
+              </button>
+            ),
+          },
     ]
 
     const table = useReactTable({
@@ -85,7 +155,7 @@ const CustomerTable = () => {
                     <div className="flex items-center">
                         <h1 className="text-xl font-bold">Create New Customer</h1>
                     </div>
-                    <button onClick={handlePopup} className="bg-green-500 hover:bg-green-600 border border-gray-300 font-bold rounded shadow-lg p-2 ml-2">Add</button>
+                    <button onClick={handleCreatePopup} className="transparent hover:bg-green-100 border border-green-300 font-bold rounded shadow-lg p-2 ml-2">Add</button>
                 </div>
             </div>
             <div className="bg-white px-2 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -123,7 +193,10 @@ const CustomerTable = () => {
                     <button onClick={() => table.setPageIndex(table.getPageCount() - 1)} className="bg-transparent hover:bg-gray-100 border border-gray-300 font-bold py-2 px-4 mt-4 rounded shadow-lg">Last Page</button>
                 </div>
             </div>
-            <Popup trigger={popupButton} closePopup={handlePopup} content={<CreateCustomerForm/>}/>
+            <Popup trigger={createPopupButton} closePopup={handleCreatePopup} content={<CreateCustomerForm/>}/>
+            <Popup trigger={editPopupButton}  closePopup={closeEditPopup} content={<EditCustomerForm customer_id={id} closePopup={closeEditPopup}/>} />
+            <Popup trigger={deletePopupButton} closePopup={closeDeletePopup} content={<DeleteCustomerForm customer_id={id} closePopup={closeDeletePopup} />} />
+            <Popup trigger={moreInfoPopupButton} closePopup={closedMoreInfoPopup} content={<CustomerRentals customer_id={id}/>} /> 
         </div>
     )
 }

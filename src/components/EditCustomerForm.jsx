@@ -1,14 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomerService from "../services/customer.service";
 
 
-const CreateCustomerForm = () => {
+const EditCustomerForm = ({customer_id, closePopup}) => {
 
     const [formData, setFormData] = useState({
         first_name : "", 
         last_name : "",
         email : "", 
+        active : ""
     })
+
+    useEffect(() => {
+        const fetchCustomer = async () => {
+        try{
+            const res = await CustomerService.get(customer_id);
+            console.log(res)
+            setFormData({
+                first_name: res.data[0].first_name || "",
+                last_name: res.data[0].last_name || "",
+                email: res.data[0].email || "",
+                active: res.data[0].active || ""
+              });
+
+        }
+        catch(err){
+            console.log(err);
+        }
+        }
+
+        fetchCustomer();
+    }, [])
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -17,51 +39,29 @@ const CreateCustomerForm = () => {
 
         console.log(formData);
     }
-    
 
-    const postCustomer = async () => {
+    const sumbitEdit = async () => {
         try{
-            const now = new Date();
-
-            // Get the date components
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so add 1 and pad with '0' if necessary
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-
-            // Format the date and time string
-            const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
             const data = {
-                store_id : 1,
                 first_name : formData.first_name,
                 last_name : formData.last_name,
                 email : formData.email,
-                address_id : 8,
-                active : 1,
-                create_date : formattedDate
+                active : formData.active
             }
-            if (!data.first_name || !data.last_name || !data.email){
-              throw {kind : "One of the inputs in empty"}
-            }
-            const res = await CustomerService.create(data);
-            setFormData({
-                first_name : "", 
-                last_name : "",
-                email : "", 
-            });
-            console.log(res)
-        } catch (err) {
+
+            const res = await CustomerService.update(customer_id, data);
+            console.log(res);
+            closePopup();
+        } catch(err){
             console.log(err);
-            alert("Failure to create Customer");
+            alert("Failure to Edit Customer");
         }
     }
+    
 
     return (
         <div>
-          <h2>Create Customer</h2>
+          <h2>Edit Customer</h2>
           <div>
             <div>
               <label htmlFor="first_name">First Name:</label>
@@ -103,11 +103,24 @@ const CreateCustomerForm = () => {
               />
             </div>
             <div>
-              <button onClick={postCustomer} className="border border-black" >Create</button>
+            <label htmlFor="active">Active:</label>
+              <input
+                className="border border-black"
+                type="text"
+                id="active"
+                name="active"
+                value={formData.active}
+                onChange={handleInputChange}
+                autoComplete="off"
+                required
+              />
+            </div>
+            <div>
+            <button onClick={sumbitEdit} className="transparent hover:bg-yellow-100 border border-yellow-300 p-2 font-bold rounded shadow-lg">Update</button>
             </div>
           </div>
         </div>
       );
 }
 
-export default CreateCustomerForm;
+export default EditCustomerForm;
