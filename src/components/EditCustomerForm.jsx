@@ -61,12 +61,12 @@ const EditCustomerForm = ({customer_id, closePopup}) => {
 
     return (
         <div>
-          <h2>Edit Customer</h2>
-          <div>
+          <h2 className="font-medium text-2xl">Edit Customer</h2>
+          <div className="w-1/3 mt-2">
             <div>
-              <label htmlFor="first_name">First Name:</label>
+              <label className="font-medium text-lg" htmlFor="first_name">First Name:</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="first_name"
                 name="first_name"
@@ -77,9 +77,9 @@ const EditCustomerForm = ({customer_id, closePopup}) => {
               />
             </div>
             <div>
-              <label htmlFor="last_name">Last Name:</label>
+              <label className="font-medium text-lg" htmlFor="last_name">Last Name:</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="last_name"
                 name="last_name"
@@ -90,9 +90,9 @@ const EditCustomerForm = ({customer_id, closePopup}) => {
               />
             </div>
             <div>
-              <label htmlFor="email">Email:</label>
+              <label className="font-medium text-lg" htmlFor="email">Email:</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 id="email"
                 name="email"
@@ -103,9 +103,9 @@ const EditCustomerForm = ({customer_id, closePopup}) => {
               />
             </div>
             <div>
-            <label htmlFor="active">Active:</label>
+            <label className="font-medium text-lg" htmlFor="active">Active:</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="active"
                 name="active"
@@ -115,7 +115,7 @@ const EditCustomerForm = ({customer_id, closePopup}) => {
                 required
               />
             </div>
-            <div>
+            <div className="mt-4">
             <button onClick={sumbitEdit} className="transparent hover:bg-yellow-100 border border-yellow-300 p-2 font-bold rounded shadow-lg">Update</button>
             </div>
           </div>

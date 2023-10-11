@@ -25,13 +25,14 @@ const RentFilmForm = ({filmDetails}) => {
             console.log(res)
         } catch (err) {
             console.log(err);
+            alert("Failure to Rent film out")
         }
     }
 
     return (
         <div>
             <FilmDetails data={filmDetails}/>
-             <input className="border border-black"
+             <input className="border border-black py-2 mr-2 rounded shadow-lg"
                     type="text"
                     id="customer_id"
                     name="customer_id"

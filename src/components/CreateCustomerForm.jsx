@@ -61,49 +61,52 @@ const CreateCustomerForm = () => {
 
     return (
         <div>
-          <h2>Create Customer</h2>
-          <div>
-            <div>
-              <label htmlFor="first_name">First Name:</label>
+          <h2 className="font-medium text-2xl">Create Customer</h2>
+          <div className="w-1/3 mt-2">
+            <div className="my-3">
+              <label className="font-medium text-lg" htmlFor="first_name">First Name</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="first_name"
                 name="first_name"
+                placeholder="First Name"
                 value={formData.first_name}
                 onChange={handleInputChange}
                 autoComplete="off"
                 required
               />
             </div>
-            <div>
-              <label htmlFor="last_name">Last Name:</label>
+            <div className="my-3">
+              <label className="font-medium text-lg" htmlFor="last_name">Last Name</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="last_name"
                 name="last_name"
+                placeholder="Last Name"
                 value={formData.last_name}
                 onChange={handleInputChange}
                 autoComplete="off"
                 required
               />
             </div>
-            <div>
-              <label htmlFor="email">Email:</label>
+            <div className="my-3">
+              <label className="font-medium text-lg" htmlFor="email">Email</label>
               <input
-                className="border border-black"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 id="email"
                 name="email"
+                placeholder="Email"
                 value={formData.email}
                 onChange={handleInputChange}
                 autoComplete="off"
                 required
               />
             </div>
-            <div>
-              <button onClick={postCustomer} className="border border-black" >Create</button>
+            <div className="mt-4">
+              <button onClick={postCustomer} className="transparent hover:bg-green-100 border border-green-300 p-2 font-bold rounded shadow-lg" >Create</button>
             </div>
           </div>
         </div>
