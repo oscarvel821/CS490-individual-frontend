@@ -15,6 +15,7 @@ const NavBar = () => {
                 <li className="p-4 text-lg font-medium"><Link to='/'>Home</Link></li>
                 <li className="p-4 text-lg font-medium"><Link to='/movies'>Movies</Link></li>
                 <li className="p-4 text-lg font-medium"><Link to='/customers'>Customers</Link></li>
+                <li className="p-4 text-lg font-medium"><Link to='/report'>Report</Link></li>
             </ul>
             <div onClick={handleNav} className="block md:hidden">
                 {!nav ? <AiOutlineClose/> : <AiOutlineMenu/>}
@@ -24,7 +25,8 @@ const NavBar = () => {
                 <ul className="p-4 uppercase">
                 <li className="p-4 border-b border-gray-200"><Link to='/'>Home</Link></li>
                 <li className="p-4 border-b border-gray-200"><Link to='/movies'>Movies</Link></li>
-                <li className="p-4 border-b border-gray-200"><Link to='/customers'>Customers</Link></li> 
+                <li className="p-4 border-b border-gray-200"><Link to='/customers'>Customers</Link></li>
+                <li className="p-4 border-b border-gray-200"><Link to='/report'>Report</Link></li>
                 </ul>
             </div>
         </div>

@@ -23,8 +23,13 @@ const remove = (id) => {
 const getAllRentals = (id) => {
     return http.get(`/customer/${id}/rentals`);
 }
+
+const getAllByStoreId = (store_id) => {
+    return http.get(`/customer?store_id=${store_id}`)
+}
 const CustomerService = {
     getAllRentals,
+    getAllByStoreId,
     getAll,
     get,
     create,
