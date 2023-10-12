@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+1. Clone this repository to your local machine:
+
+git clone https://github.com/oscarvel821/CS490-individual-frontend/tree/development
+cd CS490-individual-backend
+
+## Install the project dependencies by running:
+
+2. npm install
+
 ## Available Scripts
 
 In the project directory, you can run:
