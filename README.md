@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 1. Clone this repository to your local machine:
 
-git clone https://github.com/oscarvel821/CS490-individual-frontend/tree/development
+git clone https://github.com/oscarvel821/CS490-individual-frontend/tree/development \
 cd CS490-individual-backend
 
 ## Install the project dependencies by running:
